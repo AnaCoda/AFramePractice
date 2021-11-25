@@ -1,21 +1,34 @@
 <html>
 
 <head>
-
+    
     <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.skypack.dev/pin/three@v0.134.0-mlfrkS6HEbKKwwCDDo6H/mode=imports/optimized/three.js"></script>
+    
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@02f028bf319915bd5de1ef8b033495fe80b6729b/dist/aframe-master.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="aframe-physics-system.min.js"></script>
 </head>
 
 <body>
     <a-scene physics=" driver: ammo">
-        <a-box position="-0.5 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere ammo-body="type: dynamic" ammo-shape="type: sphere" position="0 5 -5" radius="1.25" color="#EF2D5E">
-
-        </a-sphere>
-        <a-ring position="2 0 -0.5" radius="1.25" color="#000000"></a-ring>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-entity hand-controls="left"
+                    sphere-collider="objects: .throwable"
+                    grab></a-entity>
+                    <a-entity hand-controls="right" sphere-collider="objects: .throwable"
+                    grab></a-entity>
+        
+        
+        <a-sphere ammo-constraint="target: #rope; type: lock;" ammo-body="type: dynamic" ammo-shape="type: sphere" position="0 4 -5" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
+        <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-box id="arm1" position="-0.5 7 -10" ammo-body="type: static" width="1"
+        height="15" ammo-shape color="#4CC3D9"></a-box>
+        <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 15 -6" ammo-body="type: static" height="1"
+        width="10" rotation="0 90 0" ammo-shape color="#4CC3D9">
+            <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 5 0; targetPivot: 0 0 0" color="crimson" position="0 -1 0" ammo-body="type: dynamic; gravity: 0 -9.81 0;" ammo-shape="type: cylinder"  height="10" radius="0.2"></a-cylinder>
+        </a-box>
+        <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
 </body>
