@@ -13,10 +13,9 @@
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <!--<a-entity oculus-touch-controls="hand: left"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>-->
-        <a-entity laser-controls="hand: left"></a-entity>
-        <a-entity laser-controls="hand: right"></a-entity>
+        <a-entity id="teleControl" laser-controls="hand: left" teleport-controls="type: parabolic; collisionEntities: #ground"></a-entity>
+        <a-entity id="grabControl" laser-controls="hand: right"></a-entity>
+
         <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
         <a-box id="arm1" position="-0.5 7 -10" ammo-body="type: static" width="1" height="15" ammo-shape color="#4CC3D9"></a-box>
         <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 15 -6" ammo-body="type: static" height="1" width="10" rotation="0 90 0" ammo-shape color="#4CC3D9">
