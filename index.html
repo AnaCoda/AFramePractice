@@ -13,11 +13,10 @@
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <a-entity oculus-touch-controls="hand: left"></a-entity>
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
-
-
-        <!--<a-sphere ammo-constraint="target: #rope; type: lock;" ammo-body="type: dynamic" ammo-shape="type: sphere" position="0 4 -5" radius="1" color="#EF2D5E" class="throwable"></a-sphere>-->
+        <!--<a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>-->
+        <a-entity laser-controls="hand: left"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
         <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
         <a-box id="arm1" position="-0.5 7 -10" ammo-body="type: static" width="1" height="15" ammo-shape color="#4CC3D9"></a-box>
         <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 15 -6" ammo-body="type: static" height="1" width="10" rotation="0 90 0" ammo-shape color="#4CC3D9">
