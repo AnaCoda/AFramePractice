@@ -14,7 +14,7 @@
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <a-entity id="teleControl" laser-controls="hand: left" teleport-controls="type: parabolic; collisionEntities: #ground"></a-entity>
+        <a-entity id="teleControl" laser-controls="hand: left" teleport-controls="button: trigger; type: parabolic; collisionEntities: #ground"></a-entity>
         <a-entity id="grabControl" laser-controls="hand: right"></a-entity>
 
         <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
