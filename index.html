@@ -13,9 +13,8 @@
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <!--<a-entity camera look-controls position="0 7 10"></a-entity>-->
-        <a-entity hand-controls="left" sphere-collider="objects: .throwable" grab></a-entity>
-        <a-entity hand-controls="right" sphere-collider="objects: .throwable" grab></a-entity>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
 
 
         <!--<a-sphere ammo-constraint="target: #rope; type: lock;" ammo-body="type: dynamic" ammo-shape="type: sphere" position="0 4 -5" radius="1" color="#EF2D5E" class="throwable"></a-sphere>-->
