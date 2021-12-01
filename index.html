@@ -31,7 +31,8 @@
 
         </a-cylinder>
         <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -5"></a-entity>
-        <a-sphere pendulum-angle id="pend" ammo-constraint="target: #rope" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0" ammo-shape="type: sphere" position="-0.5 3 -6" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
+        <a-sphere pendulum-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -5 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0" ammo-shape="type: sphere" position="-0.5 3 -6" radius="1" color="#EF2D5E"
+            class="throwable"></a-sphere>
         <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
