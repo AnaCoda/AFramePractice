@@ -10,16 +10,17 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/galadirith/aframe-teleport-controls@ec9d19c/dist/aframe-teleport-controls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 
     <script src="pendulumAngle.js"></script>
 </head>
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <a-entity id="cameraRig" position="0 2 5">
-            <a-entity id="head" camera="active: true" look-controls wasd-controls></a-entity>
-            <a-entity id="teleControl" laser-controls="hand: left" teleport-controls="cameraRig: #cameraRig; button: trigger; type: parabolic; collisionEntities: #ground; teleportOrigin: #head;"></a-entity>
-            <a-entity id="grabControl" laser-controls="hand: right"></a-entity>
+        <a-entity id="player" position="0 2 5">
+            <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
+            <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
+            <a-entity id="grabControl" oculus-touch-controls="hand: right"></a-entity>
         </a-entity>
 
         <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
