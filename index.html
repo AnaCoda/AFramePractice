@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 
     <script src="pendulumAngle.js"></script>
+    <script src="dragAngle.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <a-entity id="player" position="0 2 5">
             <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
             <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
-            <a-entity id="grabControl" oculus-touch-controls="hand: right"></a-entity>
+            <a-entity id="grabControl" oculus-touch-controls="hand: right" laser-controls raycaster="far: 2; objects: #pend"></a-entity>
         </a-entity>
 
         <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
@@ -33,8 +34,8 @@
 
         </a-cylinder>
         <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -5"></a-entity>
-        <a-sphere pendulum-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -6 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1;" ammo-shape="type: sphere"
-            position="-0.5 1 -6" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
+        <a-sphere pendulum-angle drag-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -6 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1;"
+            ammo-shape="type: sphere" position="-0.5 1 -6" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
         <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
