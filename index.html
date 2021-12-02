@@ -28,12 +28,13 @@
         <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 15 -6" ammo-body="type: static" height="1" width="10" rotation="0 90 0" ammo-shape color="#4CC3D9">
 
         </a-box>
-        <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 6 0; targetPivot: 0 -1 0; axis: 1 0 0; targetAxis: 1 0 0;" position="-0.5 6 -6" color="crimson" ammo-body="type: dynamic" ammo-shape="type: cylinder" height="12" radius="0.2">
+        <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 6 0; targetPivot: 0 -1 0; axis: 1 0 0; targetAxis: 1 0 0;" position="-0.5 6 -6" color="crimson" ammo-body="type: dynamic;  angularFactor: 0 1 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0;"
+            ammo-shape="type: cylinder" height="12" radius="0.2">
 
         </a-cylinder>
         <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -5"></a-entity>
-        <a-sphere pendulum-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -6 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0" ammo-shape="type: sphere" position="-0.5 1 -6" radius="1" color="#EF2D5E"
-            class="throwable"></a-sphere>
+        <a-sphere pendulum-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -6 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1;" ammo-shape="type: sphere"
+            position="-0.5 1 -6" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
         <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
