@@ -11,6 +11,7 @@
     <script src="aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/galadirith/aframe-teleport-controls@ec9d19c/dist/aframe-teleport-controls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
 
     <script src="pendulumAngle.js"></script>
     <script src="dragAngle.js"></script>
@@ -18,24 +19,24 @@
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0">
-        <a-entity id="player" position="0 2 5">
+        <a-entity id="player" position="0 0 -7">
             <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
             <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
-            <a-entity id="grabControl" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
+            <a-entity id="grabControl" sphere-collider="objects: a-box" super-hands hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
         </a-entity>
 
-        <a-box position="-1.4 5.2 -5.3" ammo-body="type: dynamic; mass: 5;" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-box id="arm1" position="-0.5 7 -10" ammo-body="type: static" width="1" height="15" ammo-shape color="#4CC3D9"></a-box>
-        <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 15 -6" ammo-body="type: static" height="1" width="10" rotation="0 90 0" ammo-shape color="#4CC3D9">
+        <a-box position="-0.3 2 -8.9" ammo-body="type: dynamic; mass: 5;" width="0.2" height="0.2" depth="0.2" ammo-shape rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-box id="arm1" position="-0.5 1 -10" ammo-body="type: static" width="0.2" height="4.5" depth="0.2" ammo-shape color="#4CC3D9"></a-box>
+        <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="-0.5 3.3 -9.1" ammo-body="type: static" height="0.2" width="2" depth="0.2" rotation="0 90 0" ammo-shape color="#4CC3D9">
 
         </a-box>
-        <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 6 0; targetPivot: 0 -1 0; axis: 1 0 0; targetAxis: 1 0 0;" position="-0.5 6 -6" color="crimson" ammo-body="type: dynamic;  angularFactor: 0 1 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0;"
-            ammo-shape="type: cylinder" height="12" radius="0.2">
+        <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 1.2 0; targetPivot: 0 -0.2 0; axis: 1 0 0; targetAxis: 1 0 0;" position="-0.5 1.2 -6" color="crimson" ammo-body="type: dynamic;  angularFactor: 0 1 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0;"
+            ammo-shape="type: cylinder" height="2.4" radius="0.04">
 
         </a-cylinder>
-        <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -5"></a-entity>
-        <a-sphere pendulum-angle drag-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 1 0; targetPivot: 0 -6 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1;"
-            ammo-shape="type: sphere" position="-0.5 1 -6" radius="1" color="#EF2D5E" class="throwable"></a-sphere>
+        <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -20"></a-entity>
+        <a-sphere pendulum-angle drag-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 0.2 0; targetPivot: 0 -1.2 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1; mass:1"
+            ammo-shape="type: sphere" grabbable hoverable position="-0.5 0 -6" radius="0.2" color="#EF2D5E" class="throwable"></a-sphere>
         <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
