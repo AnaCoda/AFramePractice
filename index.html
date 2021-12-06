@@ -11,7 +11,8 @@
     <script src="aframe-physics-system.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/galadirith/aframe-teleport-controls@ec9d19c/dist/aframe-teleport-controls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-    <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+    <!--<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>-->
+    <script src="super-hands.js"></script>
 
     <script src="pendulumAngle.js"></script>
     <script src="dragAngle.js"></script>
@@ -36,7 +37,7 @@
         </a-cylinder>
         <a-entity id="angle-text" text="color: black; width: 15" position="1 9 -20"></a-entity>
         <a-sphere pendulum-angle drag-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 0.2 0; targetPivot: 0 -1.2 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1; mass:1"
-            ammo-shape="type: sphere" grabbable hoverable position="-0.5 0 -6" radius="0.2" color="#EF2D5E" class="throwable"></a-sphere>
+            ammo-shape="type: sphere" grabbable hoverable draggable position="-0.5 0 -6" radius="0.2" color="#EF2D5E" class="throwable"></a-sphere>
         <a-plane id="ground" ammo-body="type: static" ammo-shape="type: box" position="0 0 -4" rotation="-90 0 0" width="20" height="30" color="#7BC8A4"></a-plane>
         <a-sky color="#ECECEC"></a-sky>
     </a-scene>
