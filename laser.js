@@ -1,6 +1,6 @@
 AFRAME.registerComponent('raycaster-listen', {
     schema: {
-        intersected: { default: false },
+        intersected: { default: 0 },
         angle: { default: 5 }
     },
     init: function() {
@@ -20,11 +20,20 @@ AFRAME.registerComponent('raycaster-listen', {
     tock: function() {
         if (!this.raycaster) { return; } // Not intersecting.
 
-        while (!this.data.intersected) {
+        if (this.data.intersected < 5) {
+            if (!this.raycaster) { return; } // Not intersecting.
+            console.log(this.raycaster.components.raycaster.data);
             let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+            // If the intersection object is part of wall class
+            console.log(intersection.object.el.className);
+            // Disable the current raycaster from colliding with the new element.
+
             if (!intersection) { return; }
+
+            this.raycaster.components.raycaster.data.objects = '.shit';
+            console.log(this.raycaster.components.raycaster.data);
             console.log(intersection.point);
-            this.data.intersected = true;
+            this.data.intersected++;
 
             console.log(this.data.angle);
 
@@ -45,21 +54,20 @@ AFRAME.registerComponent('raycaster-listen', {
             }
             // Otherwise, set first rotation to 180
             else {
-                newEl.setAttribute('rotation', '150 ' + (this.data.angle) + ' 0');
+                newEl.setAttribute('rotation', '180 ' + (this.data.angle) + ' 0');
             }
-            // Disable the current raycaster from colliding with the new element.
-            this.raycaster.components.raycaster.data.objects = ['a-d'];
+
             // Add this script to the new element.
             if (this.data.angle == 5) {
-                newEl.setAttribute('raycaster-listen', 'angle: -5');
+                this.el.setAttribute('raycaster-listen', 'angle: -5');
             } else {
-                newEl.setAttribute('raycaster-listen', 'angle: 5');
+                this.el.setAttribute('raycaster-listen', 'angle: 5');
             }
 
             //raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1"
 
-
-            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: blue; lineOpacity: 1');
+            newEl.setAttribute('class', 'box');
+            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: blue; lineOpacity: 1; ');
 
             sceneEl.appendChild(newEl);
         }
