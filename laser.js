@@ -1,7 +1,8 @@
 AFRAME.registerComponent('raycaster-listen', {
     schema: {
         intersected: { default: 0 },
-        angle: { default: 5 }
+        angle: { default: 5 },
+        up: { default: false }
     },
     init: function() {
         // Use events to figure out what raycaster is listening so we don't have to
@@ -20,7 +21,7 @@ AFRAME.registerComponent('raycaster-listen', {
     tock: function() {
         if (!this.raycaster) { return; } // Not intersecting.
 
-        if (this.data.intersected < 5) {
+        if (this.data.intersected < 20) {
             if (!this.raycaster) { return; } // Not intersecting.
             console.log(this.raycaster.components.raycaster.data);
             let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
@@ -30,7 +31,7 @@ AFRAME.registerComponent('raycaster-listen', {
 
             if (!intersection) { return; }
 
-            this.raycaster.components.raycaster.data.objects = '.shit';
+            this.raycaster.components.raycaster.data.objects = '.not';
             console.log(this.raycaster.components.raycaster.data);
             console.log(intersection.point);
             this.data.intersected++;
@@ -49,12 +50,18 @@ AFRAME.registerComponent('raycaster-listen', {
             newEl.setAttribute('position', intersection.point);
             // Set the angle based on this.data.angle
             // If angle is positive, set first rotation to 0, second to angle
-            if (this.data.angle > 0) {
-                newEl.setAttribute('rotation', '0 ' + (this.data.angle) + ' 0');
+            if (this.data.angle > 0 && this.data.up) {
+                newEl.setAttribute('rotation', '5 ' + (this.data.angle) + ' 0');
+                this.data.up = false;
             }
             // Otherwise, set first rotation to 180
-            else {
-                newEl.setAttribute('rotation', '180 ' + (this.data.angle) + ' 0');
+            else if (this.data.up) {
+                newEl.setAttribute('rotation', '185 ' + (this.data.angle) + ' 0');
+            } else if (this.data.angle > 0) {
+                newEl.setAttribute('rotation', '-5 ' + (this.data.angle) + ' 0');
+                this.data.up = true;
+            } else {
+                newEl.setAttribute('rotation', '175 ' + (this.data.angle) + ' 0');
             }
 
             // Add this script to the new element.
@@ -67,7 +74,7 @@ AFRAME.registerComponent('raycaster-listen', {
             //raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1"
 
             newEl.setAttribute('class', 'box');
-            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: blue; lineOpacity: 1; ');
+            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; ');
 
             sceneEl.appendChild(newEl);
         }
