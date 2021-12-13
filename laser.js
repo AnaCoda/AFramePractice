@@ -2,9 +2,15 @@ AFRAME.registerComponent('raycaster-listen', {
     schema: {
         intersected: { default: 0 },
         angle: { default: 5 },
-        up: { default: false }
+        up: { default: false },
     },
     init: function() {
+        this.origRaycaster = document.querySelector('#laser-output');
+        this.block = document.querySelector('.block');
+        console.log("hello");
+        this.origRaycaster.addEventListener('loaded', e => {
+            console.log(this.origRaycaster.components['raycaster']);
+        });
         // Use events to figure out what raycaster is listening so we don't have to
         // hardcode the raycaster.
         this.el.addEventListener('raycaster-intersected', evt => {
@@ -14,13 +20,11 @@ AFRAME.registerComponent('raycaster-listen', {
             this.raycaster = null;
         });
         if (!this.raycaster) { return; } // Not intersecting.
-
-
     },
 
     tock: function() {
         if (!this.raycaster) { return; } // Not intersecting.
-
+        var sceneEl = document.querySelector('a-scene');
         if (this.data.intersected < 20) {
             if (!this.raycaster) { return; } // Not intersecting.
             console.log(this.raycaster.components.raycaster.data);
@@ -30,8 +34,7 @@ AFRAME.registerComponent('raycaster-listen', {
             // Disable the current raycaster from colliding with the new element.
 
             if (!intersection) { return; }
-
-            this.raycaster.components.raycaster.data.objects = '.not';
+            this.raycaster.components.raycaster.data.objects = ".block";
             console.log(this.raycaster.components.raycaster.data);
             console.log(intersection.point);
             this.data.intersected++;
@@ -40,7 +43,7 @@ AFRAME.registerComponent('raycaster-listen', {
 
             var newEl = document.createElement('a-box');
             newEl.setAttribute('color', 'red');
-            var sceneEl = document.querySelector('a-scene');
+
             //ammo-body="type: static" ammo-shape="type: box" position="-10 0.05 -5.05" rotation="175 20 0" width="0.1" height="0.1" depth="0.1"
             newEl.setAttribute('ammo-body', 'type: static');
             newEl.setAttribute('ammo-shape', 'type: box');
@@ -74,9 +77,23 @@ AFRAME.registerComponent('raycaster-listen', {
             //raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1"
 
             newEl.setAttribute('class', 'box');
-            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; ');
+            newEl.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects: .wall');
 
             sceneEl.appendChild(newEl);
+        }
+        let intersection = this.origRaycaster.components.raycaster.getIntersection(this.block);
+        // Disable the current raycaster from colliding with the new element.
+        console.log(this.raycaster.components.raycaster.data.objects);
+        if (!intersection) { return; }
+        // If the intersection object is part of wall class
+        console.log(intersection.object.el.className);
+        if (intersection.object.el.className == "block") {
+            console.log(sceneEl);
+            console.log(sceneEl.querySelectorAll('.box'));
+            // Remove each box from the scene.
+            sceneEl.querySelectorAll('.box').forEach(box => {
+                box.parentNode.removeChild(box);
+            })
         }
     }
 });

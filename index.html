@@ -34,6 +34,7 @@
         </a-entity>
 
         <a-box position="8 0.5 -2.1" ammo-body="type: dynamic; mass: 0.5;" width="0.5" height="0.5" depth="0.5" ammo-shape rotation="0 0 0" material="color:#6e6e6e; metalness: 0.5;"></a-box>
+        <a-box class="block" position="5 2 -2.1" ammo-body="type: dynamic; mass: 0.5;" width="0.5" height="0.5" depth="0.5" ammo-shape rotation="0 0 0" material="color:#6e6e6e; metalness: 0.5;"></a-box>
         <a-box id="arm1" position="8.5 1 -3" ammo-body="type: static" width="0.2" height="4.5" depth="0.2" ammo-shape color="#2e1d1d"></a-box>
         <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="8.5 3.3 -2.1" ammo-body="type: static" height="0.2" width="2" depth="0.2" rotation="0 90 0" ammo-shape color="#2e1d1d">
 
@@ -51,7 +52,7 @@
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="0 2 +5.05" rotation="0 0 0" width="30" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="-15 2 0" rotation="0 90 0" width="10" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="+15 2 0" rotation="0 90 0" width="10" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
-        <a-box raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects:.wall" id="laser-output" ammo-body="type: static" ammo-shape="type: box" position="5 0.05 -5.05" rotation="175 0 0" width="0.1" height="0.1" depth="0.1" material="color:#000000; metalness: 0; roughness: 1;"></a-box>
+        <a-box raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects:.wall,.block;" id="laser-output" ammo-body="type: static" ammo-shape="type: box" position="5 0.05 -5.05" rotation="175 0 0" width="0.1" height="0.1" depth="0.1" material="color:#000000; metalness: 0; roughness: 1;"></a-box>
         <a-sky color="#0a0e3b"></a-sky>
     </a-scene>
 </body>
