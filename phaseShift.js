@@ -8,5 +8,11 @@ AFRAME.registerComponent('phase-shift', {
         el.addEventListener('gripup', function() {
             el.setAttribute('ammo-body', { disableCollision: true })
         })
+        el.addEventListener('thumbup', function() {
+            el.setAttribute('ammo-body', { disableCollision: false })
+        })
+        el.addEventListener('pistolstart', function() {
+            el.setAttribute('ammo-body', { disableCollision: false })
+        })
     }
 })
