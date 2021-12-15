@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0; friction: 0.005;">
+    <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0; friction: 1;">
         <a-entity id="player" position="9 0 0">
             <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
             <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
