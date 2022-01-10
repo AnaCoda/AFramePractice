@@ -20,10 +20,24 @@
     <script src="dragAngle.js"></script>
     <script src="phaseShift.js"></script>
     <script src="laser.js"></script>
+
+    <script src="https://rawgit.com/IdeaSpaceVR/aframe-ui-modal-component/master/dist/aframe-ui-modal-component.min.js"></script>
 </head>
 
 <body>
     <a-scene physics=" driver: ammo; debug:true; debugDrawMode: 0;">
+        <a-assets>
+            <img id="formula-sheet-1" src="assets/PhysicsFormulaSheet1.jpg">
+        </a-assets>
+
+        <a-image position="14.9 2 0" rotation="0 270 0" src="#formula-sheet-1" width="5" height="4"></a-image>
+
+        <a-entity ui-modal visible="false">
+            <a-plane width="3" height="1" color="red" position="0 -1.2 0"></a-plane>
+            <a-plane width="3" height="1" color="green" position="0 0 0"></a-plane>
+            <a-plane width="3" height="1" color="blue" position="0 1.2 0"></a-plane>
+        </a-entity>
+
         <a-entity id="player" position="9 0 0">
             <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
             <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
