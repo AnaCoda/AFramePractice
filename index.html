@@ -1,26 +1,34 @@
 <html>
 
 <head>
-
+    <!-- Physics engine -->
     <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+    <!-- Geometry -->
     <script src="https://cdn.skypack.dev/pin/three@v0.134.0-mlfrkS6HEbKKwwCDDo6H/mode=imports/optimized/three.js"></script>
-
+    <!-- Required for physics -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Main a-frame library -->
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@02f028bf319915bd5de1ef8b033495fe80b6729b/dist/aframe-master.min.js"></script>
+    <!-- Extra a-frame components -->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    <!-- A-frame physics system -->
     <script src="aframe-physics-system.min.js"></script>
+    <!-- Teleport controls library -->
     <script src="https://cdn.jsdelivr.net/gh/galadirith/aframe-teleport-controls@ec9d19c/dist/aframe-teleport-controls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
 
-    <!--<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>-->
+    <!-- Showing a hand where your controller is -->
     <script src="super-hands.js"></script>
 
+    <!-- My own scripts -->
     <script src="pendulumAngle.js"></script>
     <script src="dragAngle.js"></script>
     <script src="phaseShift.js"></script>
     <script src="laser.js"></script>
 
+    <!-- For embedding the calculator -->
     <script src="https://rawgit.com/IdeaSpaceVR/aframe-ui-modal-component/master/dist/aframe-ui-modal-component.min.js"></script>
     <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
 </head>
@@ -82,8 +90,8 @@ BY USING THE CODE, YOU AGREE:
             <!--BEGIN OF SCIENTIFIC CALCULATOR CODE-->
             <script>
                 /*****************************************
-                                                                                                                                                                    (C) https://www.calculator.net all right reserved.
-                                                                                                                                                                    *****************************************/
+                                                                                                                                                                                    (C) https://www.calculator.net all right reserved.
+                                                                                                                                                                                    *****************************************/
                 function gObj(obj) {
                     var theObj;
                     if (document.all) {
