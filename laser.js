@@ -96,5 +96,14 @@ AFRAME.registerComponent('raycaster-listen', {
                 box.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 0; objects: .wall');
             })
         }
+        if (intersection.object.el.className == "wall") {
+            console.log(sceneEl);
+            console.log(sceneEl.querySelectorAll('.box'));
+            // Remove each box from the scene.
+            sceneEl.querySelectorAll('.box').forEach(box => {
+                //box.parentNode.removeChild(box);
+                box.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects: .wall');
+            })
+        }
     }
 });
