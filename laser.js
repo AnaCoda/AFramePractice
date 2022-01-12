@@ -83,7 +83,18 @@ AFRAME.registerComponent('raycaster-listen', {
         }
         let intersection = this.origRaycaster.components.raycaster.getIntersection(this.block);
         // Disable the current raycaster from colliding with the new element.
-        if (!intersection) { return; }
+        if (!intersection) {
+            let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+            if (!intersection) { return; } else {
+                console.log(sceneEl);
+                console.log(sceneEl.querySelectorAll('.box'));
+                // Remove each box from the scene.
+                sceneEl.querySelectorAll('.box').forEach(box => {
+                    //box.parentNode.removeChild(box);
+                    box.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects: .wall');
+                })
+            }
+        }
         // If the intersection object is part of wall class
         console.log(intersection.object.el.className);
         if (intersection.object.el.className == "block") {
@@ -94,8 +105,8 @@ AFRAME.registerComponent('raycaster-listen', {
                 //box.parentNode.removeChild(box);
                 box.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 0; objects: .wall');
             })
-        }
-        if (intersection.object.el.className == "wall") {
+        } else {
+
             console.log(sceneEl);
             console.log(sceneEl.querySelectorAll('.box'));
             // Remove each box from the scene.
