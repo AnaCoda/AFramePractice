@@ -23,9 +23,11 @@
     <script src="super-hands.js"></script>
 
     <!-- My own scripts -->
+    <!-- Displays the pendulum angle on the wall -->
     <script src="pendulumAngle.js"></script>
-    <script src="dragAngle.js"></script>
+    <!-- Makes the hand solid when in a grabbing way so that it can move the pendulum -->
     <script src="phaseShift.js"></script>
+    <!-- Raycaster listeners for the lasers -->
     <script src="laser.js"></script>
 
     <!-- For embedding the calculator -->
@@ -85,8 +87,11 @@
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="0 2 +5.05" rotation="0 0 0" width="30" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="-15 2 0" rotation="0 90 0" width="10" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="+15 2 0" rotation="0 90 0" width="10" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
+
+        <!-- The original laser -->
         <a-box raycaster="showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects:.wall,.block;" id="laser-output" ammo-body="type: static" ammo-shape="type: box" position="5 0.05 -5.05" rotation="175 0 0" width="0.1" height="0.1" depth="0.1" material="color:#000000; metalness: 0; roughness: 1;"></a-box>
 
+        <!-- The calculator -->
         <a-entity position="14.9 1.6 -3" htmlembed rotation="0 -90 0">
             <!--
 TERMS OF USE
@@ -100,8 +105,8 @@ BY USING THE CODE, YOU AGREE:
             <!--BEGIN OF SCIENTIFIC CALCULATOR CODE-->
             <script>
                 /*****************************************
-                                                                                                                                                                                                                                                                                                                                                                                                        (C) https://www.calculator.net all right reserved.
-                                                                                                                                                                                                                                                                                                                                                                                                        *****************************************/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        (C) https://www.calculator.net all right reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        *****************************************/
                 function gObj(obj) {
                     var theObj;
                     if (document.all) {
