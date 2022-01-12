@@ -94,10 +94,7 @@ AFRAME.registerComponent('raycaster-listen', {
                     box.setAttribute('raycaster', 'showLine: true; far: 100; lineColor: red; lineOpacity: 1; objects: .wall');
                 })
             }
-        }
-        // If the intersection object is part of wall class
-        console.log(intersection.object.el.className);
-        if (intersection.object.el.className == "block") {
+        } else if (intersection.object.el.className == "block") {
             console.log(sceneEl);
             console.log(sceneEl.querySelectorAll('.box'));
             // Remove each box from the scene.
