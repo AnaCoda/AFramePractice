@@ -83,7 +83,6 @@ AFRAME.registerComponent('raycaster-listen', {
         }
         let intersection = this.origRaycaster.components.raycaster.getIntersection(this.block);
         // Disable the current raycaster from colliding with the new element.
-        console.log(this.raycaster.components.raycaster.data.objects);
         if (!intersection) { return; }
         // If the intersection object is part of wall class
         console.log(intersection.object.el.className);
