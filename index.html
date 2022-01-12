@@ -34,43 +34,53 @@
 </head>
 
 <body>
+    <!-- Have to use the ammo driver for the newest aframe version -->
     <a-scene physics=" driver: ammo; debug:false; debugDrawMode: 0;">
+
+        <!-- Display a physics formula sheet on the wall -->
         <a-assets>
             <img id="formula-sheet-1" src="assets/PhysicsFormulaSheet1.jpg">
         </a-assets>
-
         <a-image position="14.9 2 0" rotation="0 270 0" src="#formula-sheet-1" width="5" height="4"></a-image>
 
-        <a-entity ui-modal visible="false">
-            <a-plane width="3" height="1" color="red" position="0 -1.2 0"></a-plane>
-            <a-plane width="3" height="1" color="green" position="0 0 0"></a-plane>
-            <a-plane width="3" height="1" color="blue" position="0 1.2 0"></a-plane>
-        </a-entity>
-
+        <!-- Initialize the player -->
         <a-entity id="player" position="9 0 0">
+            <!-- Player camera -->
             <a-entity id="camera" camera="active: true" look-controls wasd-controls></a-entity>
+            <!-- Left hand teleports on ground -->
             <a-entity id="teleControl" oculus-touch-controls="hand: left" blink-controls="button: trigger; collisionEntities: #ground;"></a-entity>
+            <!-- Right hand is a hand with a collider so it can grab things -->
             <a-entity id="grabControl" ammo-body="type: kinematic; emitCollisionEvents: true; disableCollision: true" ammo-shape="fit: manual; type:sphere; sphereRadius: 0.04" phase-shift physics-collider super-hands="colliderEvent: collidestart;
             colliderEventProperty: targetEl;
             colliderEndEvent: collideend;
             colliderEndEventProperty: targetEl;" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
         </a-entity>
 
+        <!-- Show the block to be collided with. Give it a mass, prevent it from rotating, and a low friction coefficient -->
         <a-box position="8 0.5 -2.1" class="block" ammo-body="type: dynamic; mass: 0.05;  angularFactor: 0 0 0; friction: 0.2; linearSleepingThreshold: 0;" width="0.5" height="0.5" depth="0.5" ammo-shape rotation="0 0 0" material="color:#6e6e6e; metalness: 0.5;"></a-box>
 
+        <!-- Show the two arms that hold the pendulum -->
         <a-box id="arm1" position="8.5 1 -3" ammo-body="type: static" width="0.2" height="4.5" depth="0.2" ammo-shape color="#2e1d1d"></a-box>
-        <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="8.5 3.3 -2.1" ammo-body="type: static" height="0.2" width="2" depth="0.2" rotation="0 90 0" ammo-shape color="#2e1d1d">
-
-        </a-box>
+        <a-box id="arm2" ammo-constraint="target: #arm1;type:fixed;" position="8.5 3.3 -2.1" ammo-body="type: static" height="0.2" width="2" depth="0.2" rotation="0 90 0" ammo-shape color="#2e1d1d"></a-box>
+        <!-- Show the pendulum rope, with has a hinge that pivots on the contact point with arm2 -->
         <a-cylinder id="rope" ammo-constraint="target: #arm2; type: hinge;  pivot: 0 1.2 0; targetPivot: 0 -0.2 0; axis: 1 0 0; targetAxis: 1 0 0;" position="8.5 1.5 -3" material="color:#736767; metalness: 0.2;" ammo-body="type: dynamic;  angularFactor: 0 1 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0;"
             ammo-shape="type: cylinder" height="2.4" radius="0.04">
 
         </a-cylinder>
+
+        <!-- Text to show the angle of the pendulum -->
         <a-entity id="angle-text" text="color: white; width: 10" position="14 1 -5"></a-entity>
+
+        <!-- The actual pendulum weight, which has a 'pivot' (totally constrained) connecting it to the arm. -->
         <a-sphere pendulum-angle drag-angle id="pend" ammo-constraint="target: #rope; type: hinge; pivot: 0 0.2 0; targetPivot: 0 -1.15 0;" ammo-body="type: dynamic; angularDamping: 1; angularSleepingThreshold: 0; linearSleepingThreshold: 0; angularFactor: 0 1 1; mass:30"
             ammo-shape="type: sphere" hoverable draggable event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true" event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false" position="8.5 1 -2" rotation="0 90 0"
             radius="0.2" material="color:#736767; metalness: 0.2" class="throwable"></a-sphere>
+
+        <!-- The ground, which has friction -->
         <a-plane id="ground" ammo-body="type: static; friction: 0.2" ammo-shape="type: box" position="0 0 0" rotation="-90 0 0" width="30" height="10" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-plane>
+        <a-box id="ceil" ammo-body="type: static; friction: 0.2" ammo-shape="type: box" position="0 4.5 0" rotation="-90 0 0" width="30" height="10" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
+
+        <!-- The walls, which listen for raycasters to 'bounce' the laser -->
         <a-box class="wall" raycaster-listen="angle:-5" ammo-body="type: static" ammo-shape="type: box" position="0 2 -5.05" rotation="0 0 0" width="30" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="0 2 +5.05" rotation="0 0 0" width="30" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
         <a-box class="wall" raycaster-listen ammo-body="type: static" ammo-shape="type: box" position="-15 2 0" rotation="0 90 0" width="10" height="4" depth="0.1" material="color:#1c1c1c; metalness: 0; roughness: 1;"></a-box>
@@ -90,8 +100,8 @@ BY USING THE CODE, YOU AGREE:
             <!--BEGIN OF SCIENTIFIC CALCULATOR CODE-->
             <script>
                 /*****************************************
-                                                                                                                                                                                    (C) https://www.calculator.net all right reserved.
-                                                                                                                                                                                    *****************************************/
+                                                                                                                                                                                                                                                                                                                                                                                                        (C) https://www.calculator.net all right reserved.
+                                                                                                                                                                                                                                                                                                                                                                                                        *****************************************/
                 function gObj(obj) {
                     var theObj;
                     if (document.all) {
