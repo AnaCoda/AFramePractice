@@ -6,6 +6,11 @@ This is a demo for an educational escape room game where the user must use physi
 
 Hold the grip to make your controller solid, allowing you to move the pendulum by colliding it with your first. The text on the wall shows the angle of your pendulum, and one wall shows the calculator and physics formulas.
 
+Also uses:
+* Ammo.js physics system (https://github.com/n5ro/aframe-physics-system)
+* A-frame blink controls for teleportation (https://github.com/jure/aframe-blink-controls)
+* A-frame HTMLEmbed component for calculator (https://github.com/supereggbert/aframe-htmlembed-component)
+
 ![Educational_Pendulum_Game__CS30_Final_Project](https://user-images.githubusercontent.com/20260142/151087201-e81f4010-20d7-46d6-bbc4-932738d672cf.gif)
 ![image](https://user-images.githubusercontent.com/20260142/151086578-a5c24094-175a-4ec9-b7ef-33330cf76bdd.png)
 ![image](https://user-images.githubusercontent.com/20260142/151086661-af97b086-010b-4b77-bfde-2a23f2f5e61a.png)
