@@ -4,6 +4,8 @@ WebXR game created with A-Frame.
 
 This is a demo for an educational escape room game where the user must use physics to calculate an angle to move a pendulum so that it hits a block which will block lasers, allowing you to escape the room.
 
+I made this for my Computer Science 30 final project :), thanks to my school for supporting me!
+
 Hold the grip to make your controller solid, allowing you to move the pendulum by colliding it with your first. The text on the wall shows the angle of your pendulum, and one wall shows the calculator and physics formulas.
 
 Also uses:
